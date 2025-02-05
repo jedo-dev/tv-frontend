@@ -10,12 +10,6 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
-      - name: 🔨 dependecies
-        run: |
-          npm install
-      - name: 🔨 Build Project
-        run: |
-          npm run build
       - name: Docker Build image
         run: |
           echo "Build Started..."
