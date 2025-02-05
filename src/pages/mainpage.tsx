@@ -1,11 +1,12 @@
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import LoginButton from '@app/features/auth/ui/LoginButton';
 import type { MenuProps, StatisticProps } from 'antd';
-import { Card, Divider, Flex, Layout, Menu, Statistic, Typography } from "antd";
+import { Card, Flex, Layout, Menu, Statistic, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useState } from 'react';
 import CountUp from 'react-countup';
 import test from '../assets/test.svg';
+import ListChannel from '@app/features/listChannel/ui/ListChannel';
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
 );
@@ -74,19 +75,21 @@ export const MainPage = () => {
         <div className='statistic-wrapper'>
           <Typography.Title className='statistic-title'> Статистика</Typography.Title>
           <div className='statistic-divider'></div>
-         <div className='statistic'>
-         <Card style={{ width: 300 }}>
-            <Statistic title="Активных пользователей" value={3} formatter={formatter} />
-          </Card>
-          <Card style={{ width: 300 }}>
-            <Statistic title="Телеканалов в избранном" value={20} formatter={formatter} />
-          </Card>
-          <Card style={{ width: 300 }}>
-            <Statistic title="Телеканалов доступно" value={3700} formatter={formatter} />
-          </Card>
-         </div>
+          <div className='statistic'>
+            <Card style={{ width: 300 }}>
+              <Statistic title="Активных пользователей" value={3} formatter={formatter} />
+            </Card>
+            <Card style={{ width: 300 }}>
+              <Statistic title="Телеканалов в избранном" value={20} formatter={formatter} />
+            </Card>
+            <Card style={{ width: 300 }}>
+              <Statistic title="Телеканалов доступно" value={3700} formatter={formatter} />
+            </Card>
+          </div>
         </div>
-
+        <div className='list-channel'>
+          <ListChannel/>
+        </div>
       </Content>
       <Footer >Footer</Footer>
     </Layout>
