@@ -2,8 +2,8 @@ version: '3'
 services:
   frontend:
     hostname: frontend
-    image: social-frontend:latest
-    container_name: social-frontend
+    image: tv-frontend:latest
+    container_name: tv-frontend
     restart: unless-stopped
     ports:
       - '3115:3000'
