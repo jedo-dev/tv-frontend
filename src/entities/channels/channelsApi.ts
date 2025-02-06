@@ -5,7 +5,7 @@ export const tvApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://tv-backend.flareon.ru' }), // Укажи свой URL бэка
   endpoints: (builder) => ({
     getChannels: builder.query({
-      query: () => `channels?name=Love&currentStart=${new Date().toISOString()}`, // Укажи эндпоинт
+      query: () => `channels?currentStart=${new Date().toISOString()}&currentEnd=${new Date().toISOString()}`, // Укажи эндпоинт
       transformResponse: (response) => response.data, // Достаём массив `data`
     }),
   }),

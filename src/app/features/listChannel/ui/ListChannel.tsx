@@ -134,31 +134,31 @@ const mock = {
   "limit": 5,
   "totalPages": 1
 }
-const {data} = mock
+const { data } = mock
 const ListChannel: React.FC = () => {
   const { data: channels, error, isLoading } = useGetChannelsQuery({});
 
   if (isLoading) return <p>Загрузка...</p>;
   if (error) return <p>Ошибка загрузки</p>;
-const dateFunc =(data:string)=>{
-  const date = new Date(data)
-  return String(date.getHours()).padStart(2,'0') + ":" + String(date.getMinutes()).padStart(2,'0') 
-}
+  const dateFunc = (data: string) => {
+    const date = new Date(data)
+    return String(date.getHours()).padStart(2, '0') + ":" + String(date.getMinutes()).padStart(2, '0')
+  }
 
-const countProgramProgress=(start:string,end:string)=>{
-  
-  const nowDate = new Date().getTime()
-  console.log(new Date().toISOString())
-  const startDate = new Date(start).getTime()
-  const endDate= new Date(end).getTime()
-  const total = ((nowDate-startDate)/(endDate-startDate)*100).toFixed(2)
-  if (startDate < nowDate && nowDate < endDate){
-    return  <Progress percent={total} status="active" showInfo={false} strokeColor={{ from: '#108ee9', to: '#87d068' }} />
+  const countProgramProgress = (start: string, end: string) => {
+
+    const nowDate = new Date().getTime()
+    console.log(new Date().toISOString())
+    const startDate = new Date(start).getTime()
+    const endDate = new Date(end).getTime()
+    const total = ((nowDate - startDate) / (endDate - startDate) * 100).toFixed(2)
+    if (startDate < nowDate && nowDate < endDate) {
+      return <Progress percent={total} status="active" showInfo={false} strokeColor={{ from: '#108ee9', to: '#87d068' }} />
+    }
+    else {
+      return 'f'
+    }
   }
-  else{
-    return 'f'
-  }
-}
   return (
     <List
       pagination={{ position: "bottom", align: 'start' }}
@@ -169,24 +169,35 @@ const countProgramProgress=(start:string,end:string)=>{
             avatar={<img height={50} src={item.icon} />}
             title={<span>{item.name}</span>}
             description={<div>
-             
+
               <List
 
                 dataSource={item.currentProgram}
                 renderItem={(elem) => (
                   <List.Item
-                  extra={
-                    <Typography.Text >{elem.category}</Typography.Text>}
+                    extra={
+                      <Typography.Text >{elem.category}</Typography.Text>}
                   >
                     <List.Item.Meta
-                    avatar={ <span>{dateFunc(elem.start)}</span>}
-                    title={elem.title}
-                    description={<div>
-                      {countProgramProgress(elem.start,elem.stop)}
-                      {elem.description}
-                    </div>}
+                      avatar={<span>{dateFunc(elem.start)}</span>}
+                      title={elem.title}
+                      description={<div>
+                        {countProgramProgress(elem.start, elem.stop)}
+
+                        <Typography.Paragraph
+                        className="description"
+                        copyable={false}
+                          ellipsis={{
+                            rows:3,
+                            expandable: 'collapsible',
+                            symbol:"Подробнее"
+                          }}
+                          
+                        > {elem.description}</Typography.Paragraph>
+
+                      </div>}
                     />
-                   
+
                   </List.Item>
                 )}
               />
