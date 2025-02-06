@@ -1,11 +1,12 @@
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import LoginButton from '@app/features/auth/ui/LoginButton';
 import type { MenuProps, StatisticProps } from 'antd';
-import { Card, Flex, Layout, Menu, Statistic, Typography } from "antd";
+import { Card, Flex, Image, Layout, Menu, Statistic, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import { useState } from 'react';
 import CountUp from 'react-countup';
 import test from '../assets/test.svg';
+import logo from '../assets/logo.png';
 import ListChannel from '@app/features/listChannel/ui/ListChannel';
 const formatter: StatisticProps['formatter'] = (value) => (
   <CountUp end={value as number} separator="," />
@@ -44,14 +45,21 @@ export const MainPage = () => {
     <Layout className='layout'  >
       <Header className="header"  >
         <div className='menu'>
-          <div>Tv-programms</div>
-          <Menu onClick={onClick} selectedKeys={[current]} className='menu-items' mode="horizontal" items={items} />
+        <Image
+              preview={false}
+              width={64}
+              src={logo}
+
+
+            />
+          <div className='logo'>Tv.Flareon</div>
+          {/* <Menu onClick={onClick} selectedKeys={[current]} className='menu-items' mode="horizontal" items={items} /> */}
         </div>
-        <LoginButton />
+        {/* <LoginButton /> */}
       </Header>
       <Content className='body' >
         <div className='banner'>
-          <Flex justify="center">
+          <Flex justify="center" wrap>
 
             <Flex vertical align="flex-end" justify="space-between" style={{ padding: 32 }}>
               <div>
@@ -62,9 +70,10 @@ export const MainPage = () => {
                   Авторизуйтесь для добавления своих любимых телеканалов. Бэкенд собирает все избранные телеканалы пользователей и сохраняет телепередачи для дальнейшего просмотра.
                 </Typography.Text>
               </div>
-              <LoginButton />
+              {/* <LoginButton /> */}
             </Flex>
-            <img
+            <Image
+              preview={false}
               alt="avatar"
               src={test}
 

@@ -1,11 +1,13 @@
 // import {
 //   channelApi,
 // } from '@entities';
+import { tvApi } from '@entities';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 
-const rootReducer = combineReducers({
 
+const rootReducer = combineReducers({
+  [tvApi.reducerPath]: tvApi.reducer,
   // [channelApi.reducerPath]: channelApi.reducer,
 });
 
@@ -14,7 +16,7 @@ export const setupStore = () => {
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
-        // channelApi.middleware
+         tvApi.middleware
       ]),
   });
 };
