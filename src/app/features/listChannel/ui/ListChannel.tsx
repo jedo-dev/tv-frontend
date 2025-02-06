@@ -1,4 +1,6 @@
+import { useGetChannelsQuery } from "@entities";
 import { List, Progress, Typography } from "antd";
+
 
 
 const mock = {
@@ -134,6 +136,10 @@ const mock = {
 }
 const {data} = mock
 const ListChannel: React.FC = () => {
+  const { data: channels, error, isLoading } = useGetChannelsQuery({});
+
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка загрузки</p>;
 const dateFunc =(data:string)=>{
   const date = new Date(data)
   return String(date.getHours()).padStart(2,'0') + ":" + String(date.getMinutes()).padStart(2,'0') 
@@ -156,7 +162,7 @@ const countProgramProgress=(start:string,end:string)=>{
   return (
     <List
       pagination={{ position: "bottom", align: 'start' }}
-      dataSource={data}
+      dataSource={channels}
       renderItem={(item, index) => (
         <List.Item>
           <List.Item.Meta
